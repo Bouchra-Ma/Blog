@@ -1,0 +1,56 @@
+
+.articles-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .articles-title {
+    text-align: center;
+    font-size: 36px;
+    color: #371b9b;
+    margin-bottom: 40px;
+  }
+  
+
+  .articles-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+
+  .article-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .article-item:hover {
+    box-shadow: 0 4px 8px rgba(32, 17, 168, 0.1);
+  }
+  
+ 
+  .article-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .article-link {
+    text-decoration: none;
+    color: #26098d;
+  }
+  
+  .article-link:hover {
+    text-decoration: underline;
+  }
+  
+  
+  .article-excerpt {
+    font-size: 16px;
+    color: #313131;
+  }
+  
