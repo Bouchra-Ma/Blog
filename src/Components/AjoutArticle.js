@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router'; 
+import { useNavigate } from 'react-router';
 
 const AjoutArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [category_id, setCategoryId] = useState(''); 
+  const [category_id, setCategoryId] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      alert("Connecte Toi D'abord !");
-      navigate('/login'); 
+      alert("Connecte-toi d'abord !");
+      navigate('/connexion');
     }
   }, [navigate]);
 
@@ -20,21 +20,24 @@ const AjoutArticle = () => {
 
     const token = localStorage.getItem('authToken');
     if (!token) {
-      alert("Connecte Toi D'abord !");
+      alert("Connecte-toi d'abord !");
+      navigate('/connexion'); 
       return;
     }
 
-    const user_id = 1; 
-
-    const articleData = {
-      title,
-      content,
-      created_at: new Date().toISOString(),
-      user_id,
-      category_id,
-    };
-
     try {
+     
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); 
+      const user_id = decodedToken.user_id;  
+
+      const articleData = {
+        title,
+        content,
+        created_at: new Date().toISOString(),
+        user_id,
+        category_id,
+      };
+
       const response = await fetch('http://localhost:5000/articles', {
         method: 'POST',
         headers: {
@@ -47,7 +50,7 @@ const AjoutArticle = () => {
       if (response.ok) {
         navigate('/'); 
       } else {
-        alert('Échec de l\'ajout de Ton article');
+        alert("Échec de l'ajout de l'article");
       }
     } catch (error) {
       console.error('Erreur lors de l\'ajout:', error);

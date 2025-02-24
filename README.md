@@ -38,5 +38,4 @@ Le serveur back-end a déjà été mis en place par le professeur. Il est access
 * Gérer les articles : Une fois connecté, vous pouvez ajouter, modifier et supprimer des articles.
 * Mode clair et sombre : Cliquez sur l'icône du mode clair/sombre pour changer l'apparence de l'application.
 =======
-# Blog
->>>>>>> d502194854f8db1b4e5811872b3bb1afad42638e
+

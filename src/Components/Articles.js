@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import './Articles.css';
-import { useNavigate } from 'react-router'; 
-
+import { useNavigate } from 'react-router';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:5000/articles`)
@@ -15,13 +14,12 @@ const Articles = () => {
       .catch(error => alert('Erreur lors du chargement des articles: ' + error));
   }, []);
 
-  
   const handleDelete = async (id) => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      alert("Connecte toi d'abord !");
+      alert("Connecte-toi d'abord !");
       navigate('/connexion'); 
-      return; 
+      return;
     }
 
     try {
@@ -30,16 +28,15 @@ const Articles = () => {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` 
+            'Authorization': `Bearer ${token}`
           }
         });
-        console.log('Réponse de la suppression:', response);
-       
+      
+
         if (response.ok) {
           setArticles((prevArticles) => prevArticles.filter((article) => article.id !== id));
         } else {
           const errorData = await response.json();
-          console.error('Erreur détaillée:', errorData);
           alert("Erreur lors de la suppression de l'article.");
         }
       }
@@ -49,11 +46,10 @@ const Articles = () => {
     }
   };
 
- 
   const handleAddArticle = () => {
     const token = localStorage.getItem('authToken');
     if (!token) {
-      alert("Connecte toi d'abord !");
+      alert("Connecte-toi d'abord !");
       navigate('/connexion'); 
     } else {
       navigate('/AjoutArticle'); 
@@ -89,3 +85,4 @@ const Articles = () => {
 };
 
 export default Articles;
+
